@@ -1,0 +1,49 @@
+# 📊 DAX Formulas for Retail Sales Dashboard
+
+## 1️⃣ Total Sales
+Total Sales =
+SUM ( retail_sales_data[Sales] )
+
+## 2️⃣ Total Profit
+Total Profit =
+SUM ( retail_sales_data[Profit] )
+
+## 3️⃣ Profit Margin %
+Profit Margin % =
+DIVIDE ( [Total Profit], [Total Sales], 0 )
+
+## 4️⃣ Sales YoY %
+Sales YoY % =
+VAR CurrentYearSales =
+    CALCULATE (
+        [Total Sales],
+        YEAR ( retail_sales_data[Date] ) = MAX ( YEAR ( retail_sales_data[Date] ) )
+    )
+VAR PreviousYearSales =
+    CALCULATE (
+        [Total Sales],
+        YEAR ( retail_sales_data[Date] ) = MAX ( YEAR ( retail_sales_data[Date] ) ) - 1
+    )
+RETURN
+DIVIDE ( CurrentYearSales - PreviousYearSales, PreviousYearSales, 0 )
+
+## 5️⃣ Sales YoY Change
+Sales YoY Change =
+[Total Sales] - CALCULATE ( [Total Sales], DATEADD ( retail_sales_data[Date], -1, YEAR ) )
+
+## 6️⃣ Sales YTD (Year to Date)
+Sales YTD =
+TOTALYTD ( [Total Sales], retail_sales_data[Date] )
+
+## 7️⃣ Average Discount
+Avg Discount =
+AVERAGE ( retail_sales_data[Discount] )
+
+## 8️⃣ Top N Products by Sales (for filtering visuals)
+TopN Products Sales =
+RANKX (
+    ALL ( retail_sales_data[Product] ),
+    [Total Sales],
+    ,
+    DESC
+)
