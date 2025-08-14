@@ -51,8 +51,10 @@ The objective was to design and build an **interactive Power BI dashboard** to a
 ---
 
 ## 📷 Dashboard Preview
-![Dashboard Screenshot](images/dashboard_preview.png)
+
+
 <img width="1689" height="934" alt="Screenshot 2025-08-14 235116" src="https://github.com/user-attachments/assets/b8e33d39-4c6c-4e9f-a7c6-88ce8c1ab94a" />
+
 
 ---
 
